@@ -18,4 +18,12 @@ export class EventListener {
 
     element.addEventListener(event, handler);
   };
+
+  remove(listenerId: string) {
+    const listener = this.listeners[listenerId];
+    if (!listener) return;
+    
+    listener.element.removeEventListener(listener.event, listener.handler);
+    delete this.listeners[listenerId];
+  }
 }
