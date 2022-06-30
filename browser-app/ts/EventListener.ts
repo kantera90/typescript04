@@ -19,4 +19,3 @@ export class EventListener {
     element.addEventListener(event, handler);
   };
 }
-m
