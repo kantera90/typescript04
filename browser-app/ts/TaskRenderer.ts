@@ -1,7 +1,12 @@
 import { Task } from './Task';
+import dragula from 'dragula';
 
 export class TaskRenderer {
-  constructor(private readonly todoList: HTMLElement) {}
+  constructor(
+    private readonly todoList: HTMLElement,
+    private readonly doingList: HTMLElement,
+    private readonly doneList: HTMLElement,
+  ) {}
   
   append(task: Task) {
     const { taskEl, deleteButtonEl} = this.render(task);
@@ -32,5 +37,14 @@ export class TaskRenderer {
     taskEl.append(spanEl, deleteButtonEl);
 
     return { taskEl, deleteButtonEl };
+  }
+
+  subscribeDragAndDrop() {
+    dragula([this.todoList, this.doingList, this.doneList]).on('drop',(el, target, source, sibling) => {
+      console.log(el);
+      console.log(target);
+      console.log(source);
+      console.log(sibling);
+    });
   }
 }
